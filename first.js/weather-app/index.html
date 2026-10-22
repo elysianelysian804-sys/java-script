@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Weather App</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="sky">
+
+        <div class="stars"></div>
+
+        <div class="sun"></div>
+
+        <div class="moon">
+            <span class="crater crater1"></span>
+            <span class="crater crater2"></span>
+            <span class="crater crater3"></span>
+        </div>
+
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+
+        <div class="mountains mountain-back"></div>
+        <div class="mountains mountain-front"></div>
+
+        <div class="city-glow"></div>
+
+        <div class="plane">✈</div>
+
+    </div>
+
+    <!-- Rain -->
+    <div class="rain-layer"></div>
+
+    <main class="app">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <div class="brand">
+                <span class="brand-icon">◉</span>
+                <span>Weather</span>
+            </div>
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="cityInput"
+                    placeholder="Search city..."
+                >
+
+                <button id="searchBtn">
+                    🔍
+                </button>
+
+            </div>
+
+            <div class="top-actions">
+
+                <button
+                    class="location-btn"
+                    id="locationBtn"
+                    title="Use my location"
+                >
+                    📍
+                </button>
+
+                <button
+                    class="rain-test-btn"
+                    id="rainTestBtn"
+                >
+                    🌧️ Test Rain
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- HERO -->
+        <section class="hero">
+
+            <div class="location">
+
+                <span>📍</span>
+
+                <span id="locationName">
+                    Bhopal
+                </span>
+
+                <span id="countryName">
+                    India
+                </span>
+
+            </div>
+
+
+            <div class="temperature">
+
+                <span id="temperature">
+                    --
+                </span>
+
+                <span class="degree">
+                    °
+                </span>
+
+            </div>
+
+
+            <div class="weather-main">
+
+                <div
+                    id="weatherIcon"
+                    class="weather-icon"
+                >
+                    ☀️
+                </div>
+
+                <div id="weatherDescription">
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <div class="feels-like">
+
+                Feels like
+
+                <strong id="feelsLike">
+                    --°
+                </strong>
+
+            </div>
+
+
+            <div class="sunset-pill">
+
+                <span>🌅</span>
+
+                Sunset
+
+                <strong id="sunset">
+                    --:--
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- METRICS -->
+        <section class="metrics-grid">
+
+            <div class="metric-card">
+
+                <div class="metric-icon">
+                    💧
+                </div>
+
+                <div class="metric-info">
+
+                    <span>
+                        Humidity
+                    </span>
+
+                    <strong id="humidity">
+                        --%
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <div class="metric-icon">
+                    💨
+                </div>
+
+                <div class="metric-info">
+
+                    <span>
+                        Wind Speed
+                    </span>
+
+                    <strong id="windSpeed">
+                        -- km/h
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <div class="metric-icon">
+                    👁️
+                </div>
+
+                <div class="metric-info">
+
+                    <span>
+                        Visibility
+                    </span>
+
+                    <strong id="visibility">
+                        10 km
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <div class="metric-icon">
+                    🧭
+                </div>
+
+                <div class="metric-info">
+
+                    <span>
+                        Pressure
+                    </span>
+
+                    <strong id="pressure">
+                        -- hPa
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <div class="metric-icon">
+                    ☀️
+                </div>
+
+                <div class="metric-info">
+
+                    <span>
+                        UV Index
+                    </span>
+
+                    <strong id="uv">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- INFO -->
+        <section class="info-strip">
+
+            <div>
+
+                <span>
+                    🌄 Sunrise
+                </span>
+
+                <strong id="sunrise">
+                    --:--
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    🌡️ Feels Like
+                </span>
+
+                <strong id="feelsLike2">
+                    --°
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    🌇 Sunset
+                </span>
+
+                <strong id="sunset2">
+                    --:--
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- FORECAST -->
+        <section class="glass-panel forecast-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="small-label">
+                        TODAY
+                    </span>
+
+                    <h2>
+                        24-Hour Forecast
+                    </h2>
+
+                </div>
+
+                <span class="panel-icon">
+                    📈
+                </span>
+
+            </div>
+
+
+            <div class="chart-container">
+
+                <canvas id="weatherChart"></canvas>
+
+            </div>
+
+
+            <div
+                id="hourlyForecast"
+                class="hourly-list"
+            ></div>
+
+        </section>
+
+
+        <!-- DETAILS -->
+        <section class="bottom-grid">
+
+            <div class="glass-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="small-label">
+                            WEATHER
+                        </span>
+
+                        <h2>
+                            Today's Details
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Wind Direction
+                    </span>
+
+                    <strong id="windDirection">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Day / Night
+                    </span>
+
+                    <strong id="dayNight">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Weather Code
+                    </span>
+
+                    <strong id="weatherCode">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="glass-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="small-label">
+                            HIGHLIGHTS
+                        </span>
+
+                        <h2>
+                            Today's Outlook
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="highlight">
+
+                    <span>
+                        ☀️
+                    </span>
+
+                    <div>
+
+                        <small>
+                            UV Index
+                        </small>
+
+                        <strong id="uvText">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="highlight">
+
+                    <span>
+                        🌧️
+                    </span>
+
+                    <div>
+
+                        <small>
+                            Rain Chance
+                        </small>
+
+                        <strong id="rainChance">
+                            --%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+            Weather data powered by
+            <strong>Open-Meteo</strong>
+        </footer>
+
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>

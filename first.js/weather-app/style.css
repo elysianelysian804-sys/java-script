@@ -1,0 +1,1026 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: white;
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(
+            circle at 70% 10%,
+            rgba(255,180,70,.22),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #081427,
+            #0a2039,
+            #07101f
+        );
+
+    transition: background 1s ease;
+}
+
+
+/* ================= APP ================= */
+
+.app {
+    position: relative;
+    z-index: 10;
+
+    width: min(1200px, 94%);
+    margin: auto;
+
+    padding: 25px 0 50px;
+}
+
+
+/* ================= TOP BAR ================= */
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+    margin-bottom: 35px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.brand-icon {
+    color: #66c7ff;
+    font-size: 25px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+
+    width: min(430px, 45vw);
+
+    padding: 5px;
+
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 16px;
+
+    background: rgba(255,255,255,.07);
+
+    backdrop-filter: blur(15px);
+}
+
+.search-box input {
+    flex: 1;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+    color: white;
+
+    padding: 11px 13px;
+
+    font-size: 14px;
+}
+
+.search-box input::placeholder {
+    color: rgba(255,255,255,.5);
+}
+
+.search-box button {
+    border: none;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 11px;
+
+    cursor: pointer;
+
+    background: rgba(255,255,255,.1);
+    color: white;
+
+    transition: .3s;
+}
+
+.search-box button:hover {
+    background: rgba(100,190,255,.25);
+    transform: scale(1.05);
+}
+
+.top-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.location-btn,
+.rain-test-btn {
+    border: 1px solid rgba(255,255,255,.12);
+
+    background: rgba(255,255,255,.07);
+
+    color: white;
+
+    cursor: pointer;
+
+    border-radius: 12px;
+
+    backdrop-filter: blur(12px);
+
+    transition: .3s;
+}
+
+.location-btn {
+    width: 42px;
+    height: 42px;
+    font-size: 17px;
+}
+
+.location-btn:hover,
+.rain-test-btn:hover {
+    background: rgba(100,190,255,.2);
+    transform: translateY(-2px);
+}
+
+.rain-test-btn {
+    padding: 10px 15px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.rain-test-btn.active {
+    background: rgba(70,150,255,.3);
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    text-align: center;
+    position: relative;
+
+    padding: 20px 0 40px;
+}
+
+.location {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 8px;
+
+    color: rgba(255,255,255,.75);
+
+    font-size: 15px;
+}
+
+#countryName {
+    opacity: .5;
+}
+
+.temperature {
+    margin-top: 12px;
+
+    font-size: clamp(80px, 12vw, 140px);
+
+    line-height: .95;
+
+    font-weight: 300;
+
+    letter-spacing: -7px;
+
+    text-shadow:
+        0 10px 50px rgba(0,0,0,.25);
+}
+
+.degree {
+    font-size: .4em;
+    vertical-align: top;
+
+    position: relative;
+    top: 10px;
+
+    letter-spacing: 0;
+}
+
+.weather-main {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.weather-icon {
+    font-size: 35px;
+
+    animation:
+        iconFloat 4s ease-in-out infinite;
+}
+
+.feels-like {
+    margin-top: 8px;
+
+    color: rgba(255,255,255,.55);
+
+    font-size: 14px;
+}
+
+.feels-like strong {
+    color: white;
+    margin-left: 4px;
+}
+
+.sunset-pill {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 20px;
+
+    padding: 9px 15px;
+
+    border-radius: 50px;
+
+    background: rgba(255,255,255,.07);
+
+    border: 1px solid rgba(255,255,255,.1);
+
+    backdrop-filter: blur(15px);
+
+    font-size: 12px;
+}
+
+
+/* ================= METRICS ================= */
+
+.metrics-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 12px;
+}
+
+.metric-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 17px;
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,.06);
+
+    border: 1px solid rgba(255,255,255,.09);
+
+    backdrop-filter: blur(18px);
+
+    transition: .3s;
+}
+
+.metric-card:hover {
+    transform: translateY(-4px);
+
+    background: rgba(255,255,255,.09);
+}
+
+.metric-icon {
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,.07);
+}
+
+.metric-info {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+.metric-info span {
+    color: rgba(255,255,255,.48);
+
+    font-size: 11px;
+}
+
+.metric-info strong {
+    font-size: 15px;
+}
+
+
+/* ================= INFO STRIP ================= */
+
+.info-strip {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    margin-top: 15px;
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,.045);
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    backdrop-filter: blur(15px);
+
+    overflow: hidden;
+}
+
+.info-strip > div {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 15px 20px;
+
+    border-right:
+        1px solid rgba(255,255,255,.07);
+}
+
+.info-strip > div:last-child {
+    border-right: none;
+}
+
+.info-strip span {
+    color: rgba(255,255,255,.5);
+    font-size: 12px;
+}
+
+
+/* ================= GLASS ================= */
+
+.glass-panel {
+    margin-top: 18px;
+
+    padding: 22px;
+
+    border-radius: 22px;
+
+    background: rgba(255,255,255,.055);
+
+    border: 1px solid rgba(255,255,255,.09);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.12);
+}
+
+.panel-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+.small-label {
+    font-size: 10px;
+
+    letter-spacing: 1.5px;
+
+    color: rgba(255,255,255,.4);
+}
+
+.panel-header h2 {
+    font-size: 18px;
+    margin-top: 3px;
+}
+
+
+/* ================= CHART ================= */
+
+.chart-container {
+    height: 230px;
+    width: 100%;
+}
+
+.hourly-list {
+    display: flex;
+
+    gap: 8px;
+
+    overflow-x: auto;
+
+    padding-top: 15px;
+}
+
+.hour-card {
+    min-width: 82px;
+
+    padding: 10px;
+
+    text-align: center;
+
+    border-radius: 14px;
+
+    background: rgba(255,255,255,.04);
+
+    border: 1px solid rgba(255,255,255,.06);
+}
+
+.hour-card small {
+    color: rgba(255,255,255,.45);
+}
+
+.hour-card span {
+    display: block;
+
+    font-size: 20px;
+
+    margin: 5px;
+}
+
+
+/* ================= DETAILS ================= */
+
+.bottom-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 18px;
+}
+
+.detail-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 14px 0;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.06);
+}
+
+.detail-row span {
+    color: rgba(255,255,255,.48);
+    font-size: 13px;
+}
+
+.detail-row strong {
+    font-size: 13px;
+}
+
+.highlight {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 14px 0;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.06);
+}
+
+.highlight > span {
+    font-size: 24px;
+}
+
+.highlight div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.highlight small {
+    color: rgba(255,255,255,.45);
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    text-align: center;
+
+    margin-top: 35px;
+
+    color: rgba(255,255,255,.35);
+
+    font-size: 12px;
+}
+
+
+/* ================= SKY ================= */
+
+.sky {
+    position: fixed;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+.sun {
+    position: absolute;
+
+    width: 170px;
+    height: 170px;
+
+    border-radius: 50%;
+
+    top: 6%;
+    right: 12%;
+
+    background:
+        radial-gradient(
+            circle,
+            #fff7c7 0%,
+            #ffd66b 35%,
+            rgba(255,170,50,.2) 70%,
+            transparent 72%
+        );
+
+    box-shadow:
+        0 0 100px rgba(255,190,70,.4);
+}
+
+.moon {
+    position: absolute;
+
+    width: 125px;
+    height: 125px;
+
+    top: 8%;
+    right: 15%;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 35%,
+            #ffffff,
+            #d7dded 60%,
+            #9fa9bf
+        );
+
+    box-shadow:
+        0 0 80px rgba(160,180,255,.28);
+
+    opacity: 0;
+}
+
+.crater {
+    position: absolute;
+
+    border-radius: 50%;
+
+    background:
+        rgba(100,110,130,.18);
+}
+
+.crater1 {
+    width: 22px;
+    height: 22px;
+
+    top: 25px;
+    left: 30px;
+}
+
+.crater2 {
+    width: 15px;
+    height: 15px;
+
+    top: 70px;
+    left: 75px;
+}
+
+.crater3 {
+    width: 10px;
+    height: 10px;
+
+    top: 45px;
+    left: 85px;
+}
+
+
+/* ================= STARS ================= */
+
+.stars {
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        radial-gradient(1px 1px at 15% 20%, white, transparent),
+        radial-gradient(1px 1px at 30% 35%, white, transparent),
+        radial-gradient(1px 1px at 50% 15%, white, transparent),
+        radial-gradient(1px 1px at 75% 30%, white, transparent),
+        radial-gradient(1px 1px at 85% 15%, white, transparent),
+        radial-gradient(1px 1px at 65% 45%, white, transparent);
+
+    opacity: 0;
+}
+
+.weather-night .stars {
+    opacity: .7;
+}
+
+
+/* ================= CLOUDS ================= */
+
+.cloud {
+    position: absolute;
+
+    width: 240px;
+    height: 65px;
+
+    border-radius: 80px;
+
+    background:
+        rgba(220,235,255,.12);
+
+    filter: blur(2px);
+
+    opacity: .5;
+}
+
+.cloud::before,
+.cloud::after {
+    content: "";
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    background: inherit;
+}
+
+.cloud::before {
+    width: 100px;
+    height: 100px;
+
+    left: 35px;
+    bottom: 0;
+}
+
+.cloud::after {
+    width: 80px;
+    height: 80px;
+
+    right: 30px;
+    bottom: 0;
+}
+
+.cloud1 {
+    top: 18%;
+    left: -180px;
+
+    animation:
+        cloudFloat1 35s linear infinite;
+}
+
+.cloud2 {
+    top: 32%;
+    right: -220px;
+
+    transform: scale(.8);
+
+    animation:
+        cloudFloat2 45s linear infinite;
+}
+
+@keyframes cloudFloat1 {
+    from {
+        transform: translateX(-180px);
+    }
+
+    to {
+        transform: translateX(110vw);
+    }
+}
+
+@keyframes cloudFloat2 {
+    from {
+        transform: translateX(120vw);
+    }
+
+    to {
+        transform: translateX(-250px);
+    }
+}
+
+
+/* ================= MOUNTAINS ================= */
+
+.mountains {
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 30%;
+
+    clip-path:
+        polygon(
+            0 100%,
+            0 70%,
+            12% 45%,
+            22% 72%,
+            35% 35%,
+            48% 70%,
+            62% 40%,
+            75% 70%,
+            88% 35%,
+            100% 65%,
+            100% 100%
+        );
+}
+
+.mountain-back {
+    background:
+        rgba(15,35,58,.8);
+}
+
+.mountain-front {
+    height: 23%;
+
+    opacity: .95;
+
+    background:
+        rgba(4,14,27,.95);
+}
+
+
+/* ================= CITY ================= */
+
+.city-glow {
+    position: absolute;
+
+    bottom: 12%;
+    left: 10%;
+
+    width: 80%;
+    height: 80px;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(55,130,210,.18),
+            transparent 70%
+        );
+
+    filter: blur(15px);
+}
+
+
+/* ================= PLANE ================= */
+
+.plane {
+    position: absolute;
+
+    top: 25%;
+    left: -50px;
+
+    font-size: 18px;
+
+    opacity: .25;
+
+    animation:
+        planeMove 30s linear infinite;
+}
+
+@keyframes planeMove {
+    from {
+        transform:
+            translateX(-50px)
+            translateY(0);
+    }
+
+    to {
+        transform:
+            translateX(110vw)
+            translateY(-80px);
+    }
+}
+
+
+/* ================= RAIN ================= */
+
+.rain-layer {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 5;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    background-image:
+        repeating-linear-gradient(
+            105deg,
+            transparent 0px,
+            transparent 12px,
+            rgba(170,215,255,.45) 13px,
+            transparent 15px,
+            transparent 25px
+        );
+
+    background-size: 90px 90px;
+}
+
+body.weather-rain .rain-layer,
+body.weather-storm .rain-layer {
+    opacity: .75;
+
+    animation:
+        rainFall .55s linear infinite;
+}
+
+@keyframes rainFall {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: -30px 90px;
+    }
+}
+
+
+/* ================= STORM ================= */
+
+body.weather-storm::after {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 6;
+
+    pointer-events: none;
+
+    background: white;
+
+    opacity: 0;
+
+    animation:
+        lightning 5s infinite;
+}
+
+@keyframes lightning {
+    0%, 88%, 92%, 100% {
+        opacity: 0;
+    }
+
+    89%, 91% {
+        opacity: .12;
+    }
+}
+
+
+/* ================= CLOUDY ================= */
+
+body.weather-cloudy .cloud {
+    opacity: .85;
+}
+
+
+/* ================= FOG ================= */
+
+body.weather-fog::after {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 4;
+
+    pointer-events: none;
+
+    background:
+        rgba(190,205,220,.08);
+}
+
+
+/* ================= SNOW ================= */
+
+.snow-layer {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 5;
+
+    pointer-events: none;
+
+    opacity: 0;
+}
+
+.weather-snow .snow-layer {
+    opacity: 1;
+}
+
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes iconFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 850px) {
+
+    .metrics-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .topbar {
+        flex-wrap: wrap;
+    }
+
+    .search-box {
+        width: 100%;
+        order: 3;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .app {
+        width: 92%;
+    }
+
+    .metrics-grid {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .info-strip {
+        grid-template-columns: 1fr;
+    }
+
+    .info-strip > div {
+        border-right: none;
+
+        border-bottom:
+            1px solid rgba(255,255,255,.07);
+    }
+
+    .bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rain-test-btn {
+        padding: 9px 11px;
+        font-size: 12px;
+    }
+}
